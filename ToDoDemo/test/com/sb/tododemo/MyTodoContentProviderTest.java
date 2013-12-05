@@ -1,11 +1,7 @@
+package com.sb.tododemo;
 
-
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.database.Cursor;
-
-import com.sb.calcsample.databases.MyTodoContentProvider;
-import com.sb.calcsample.databases.TodoTable;
+import static org.junit.Assert.assertTrue;
+import static org.robolectric.Robolectric.shadowOf;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +12,12 @@ import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowContentProvider;
 import org.robolectric.shadows.ShadowContentResolver;
 
-import static org.junit.Assert.assertTrue;
-import static org.robolectric.Robolectric.shadowOf;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.database.Cursor;
+
+import com.sb.tododemo.databases.MyTodoContentProvider;
+import com.sb.tododemo.databases.TodoTable;
 
 
 @RunWith(RobolectricTestRunner.class)

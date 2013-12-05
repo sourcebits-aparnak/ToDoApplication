@@ -6,7 +6,8 @@
     <string name="text_add">Save Task</string>
 
     <!-- The hint texts are to be listed down here. -->
-    <string name="hint_task">Enter name of the task</string>
-    <string name="hint_task_description">Enter task description</string>
+    <string name="hint_category">Enter task category</string>
+    <string name="hint_summary">Enter task summary</string>
+    <string name="hint_description">Enter description</string>
 
 </resources>
