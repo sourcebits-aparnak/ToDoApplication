@@ -13,4 +13,14 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_task" />
 
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_task_description" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_add" />
+
 </RelativeLayout>
