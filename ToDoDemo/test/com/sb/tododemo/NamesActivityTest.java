@@ -1,11 +1,8 @@
-
+package com.sb.tododemo;
 
 import android.app.Activity;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.sb.tododemo.NamesActivity;
-import com.sb.tododemo.R;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
