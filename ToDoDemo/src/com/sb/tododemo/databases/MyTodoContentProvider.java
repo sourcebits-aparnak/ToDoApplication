@@ -23,7 +23,7 @@ public class MyTodoContentProvider extends ContentProvider{
     private static final int TODOS = 10;
     private static final int TODO_ID = 20;
 
-    public static final String AUTHORITY = "com.sb.calcsample.databases";
+    public static final String AUTHORITY = "com.sb.tododemo.databases";
 
     private static final String BASE_PATH = "todos";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
