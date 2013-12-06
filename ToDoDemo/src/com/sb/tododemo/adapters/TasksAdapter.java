@@ -3,6 +3,7 @@ package com.sb.tododemo.adapters;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import com.sb.tododemo.databases.TodoTable;
  *
  */
 public class TasksAdapter extends CursorAdapter {
+    
+    private static final String TAG = TasksAdapter.class.getName();
 
     public TasksAdapter(Context context, Cursor cursor) {
         super(context, cursor, true);        
@@ -24,6 +27,8 @@ public class TasksAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
+        
+        Log.i(TAG, "Count : " + cursor.getCount());
 
         if(cursor != null && cursor.getCount() > 0) {
 
