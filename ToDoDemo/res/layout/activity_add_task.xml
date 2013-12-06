@@ -18,18 +18,21 @@
         android:id="@+id/task_summary_edittext"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/task_category_edittext"
         android:hint="@string/hint_summary" />
 
     <EditText
         android:id="@+id/task_description_edittext"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/task_summary_edittext"
         android:hint="@string/hint_description" />
 
     <Button
         android:id="@+id/button_add"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/task_description_edittext"
         android:text="@string/text_add" />
 
 </RelativeLayout>
