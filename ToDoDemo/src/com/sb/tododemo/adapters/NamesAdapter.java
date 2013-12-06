@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.sb.tododemo.R;
-import com.sb.tododemo.R.layout;
-
 import java.util.List;
 
 public class NamesAdapter extends BaseAdapter {

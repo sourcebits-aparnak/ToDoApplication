@@ -2,11 +2,15 @@ package com.sb.tododemo;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.sb.tododemo.databases.MyTodoContentProvider;
+import com.sb.tododemo.databases.TodoTable;
 
 public class AddTaskActivity extends Activity implements OnClickListener {
 
@@ -44,6 +48,12 @@ public class AddTaskActivity extends Activity implements OnClickListener {
     public void onClick(View view) {
         if (view.getId() == R.id.button_add) {
             // TODO: Save the details to the database.
+            final ContentValues values = new ContentValues();
+            values.put(TodoTable.COLUMN_CATEGORY, mTaskCategory.getText().toString());
+            values.put(TodoTable.COLUMN_SUMMARY, mTaskSummary.getText().toString());
+            values.put(TodoTable.COLUMN_DESCRIPTION, mTaskDescription.getText().toString());
+            getContentResolver().insert(MyTodoContentProvider.CONTENT_URI, values);
+                        
         }
 
     }

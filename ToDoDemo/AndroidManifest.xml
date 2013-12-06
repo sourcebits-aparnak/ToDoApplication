@@ -24,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.sb.tododemo.ShowTaskActivity" >
+        </activity>
+
         <provider
             android:name="com.sb.tododemo.databases.MyTodoContentProvider"
             android:authorities="com.sb.tododemo.databases" >
