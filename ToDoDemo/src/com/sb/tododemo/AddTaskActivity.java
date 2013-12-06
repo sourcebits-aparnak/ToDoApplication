@@ -1,11 +1,10 @@
 package com.sb.tododemo;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.util.Log;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,7 +16,7 @@ import com.sb.tododemo.databases.MyTodoContentProvider;
 import com.sb.tododemo.databases.TodoTable;
 
 public class AddTaskActivity extends Activity implements OnClickListener {
-    
+
     private static final String TAG = AddTaskActivity.class.getName();
 
     private EditText mTaskCategory;
@@ -57,23 +56,22 @@ public class AddTaskActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button_add) {
-            // TODO: Save the details to the database.
-            final ContentValues values = new ContentValues();
+
+            ContentValues values = new ContentValues();
             values.put(TodoTable.COLUMN_CATEGORY, mTaskCategory.getText().toString());
             values.put(TodoTable.COLUMN_SUMMARY, mTaskSummary.getText().toString());
             values.put(TodoTable.COLUMN_DESCRIPTION, mTaskDescription.getText().toString());
-            getContentResolver().insert(MyTodoContentProvider.CONTENT_URI, values);
+            Uri insertedUri = getContentResolver().insert(MyTodoContentProvider.CONTENT_URI, values);
+            if (insertedUri != null) {
+                Toast.makeText(this, "Row inserted!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Problem while inserting...", Toast.LENGTH_SHORT).show();
+            }
 
-            Cursor cursor = getContentResolver().query(MyTodoContentProvider.CONTENT_URI, null,
-                    null, null, null);
-            Log.i(TAG, "Count : " + cursor.getCount());
-            cursor.close();
-            
-            Toast.makeText(this, "Task added", Toast.LENGTH_SHORT).show();
-            
         } else if(view.getId() == R.id.button_show_tasks) {
             Intent intent = new Intent(AddTaskActivity.this, ShowTaskActivity.class);
             startActivity(intent);            
+
         }
 
     }

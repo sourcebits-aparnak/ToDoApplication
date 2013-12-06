@@ -30,7 +30,7 @@ public class AddTaskActivityTest {
     }
 
     @Test
-    public void viewsShouldNotBeNull() {
+    public void viewsShouldNotBeNull() throws Exception {
         assertNotNull("taskCategory is null", taskCategory);
         assertNotNull("taskSummary is null", taskSummary);
         assertNotNull("taskDescription is null", taskDescription);
@@ -38,7 +38,7 @@ public class AddTaskActivityTest {
     }
 
     @Test
-    public void shouldSaveTaskDetailsToTheDatabase() {
+    public void shouldSaveTaskDetailsToTheDatabase() throws Exception {
         taskCategory.setText("Meeting");
         taskSummary.setText("Product Planning");
         taskDescription.setText("Discussion about the product");

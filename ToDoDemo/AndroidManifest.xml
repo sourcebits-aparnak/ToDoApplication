@@ -29,7 +29,8 @@
 
         <provider
             android:name="com.sb.tododemo.databases.MyTodoContentProvider"
-            android:authorities="com.sb.tododemo.databases" >
+            android:authorities="com.sb.tododemo.databases"
+            android:exported="false" >
         </provider>
     </application>
 
