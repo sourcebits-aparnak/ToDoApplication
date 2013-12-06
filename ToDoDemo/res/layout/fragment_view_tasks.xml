@@ -8,6 +8,6 @@
         android:id="@+id/tasks_fragmenty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.sb.tododemo.fragments.TasksFragment" />
+        class="com.sb.tododemo.fragments.ViewTasksFragment" />
 
 </LinearLayout>

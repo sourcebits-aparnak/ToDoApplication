@@ -15,7 +15,7 @@ public class ShowTaskActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {     
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tasks_fragment_layout);
+        setContentView(R.layout.fragment_view_tasks);
     }   
 
 }

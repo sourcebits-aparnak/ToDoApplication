@@ -28,7 +28,7 @@ public class AddTaskActivity extends Activity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_task);
+        setContentView(R.layout.fragment_add_task);
         initViews();
     }
 

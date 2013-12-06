@@ -6,8 +6,6 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,26 +17,26 @@ import com.sb.tododemo.databases.MyTodoContentProvider;
 
 /**
  * Fragment for tasks.
+ * 
  * @author Sourcebits LLC
- *
  */
-public class TasksFragment extends Fragment implements LoaderCallbacks<Cursor> {
+public class ViewTasksFragment extends Fragment implements LoaderCallbacks<Cursor> {
 
-    private static final String TAG = TasksFragment.class.getName();  
+    private static final String TAG = ViewTasksFragment.class.getName();
 
-    private ListView mTasksListView;
+    private ListView            mTasksListView;
 
-    private TasksAdapter mTasksAdapter;
-    
-    public TasksFragment() {
-        
+    private TasksAdapter        mTasksAdapter;
+
+    public ViewTasksFragment() {
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.taks_list_layout, container, false);
-        mTasksListView = (ListView) view.findViewById(R.id.tasks_list);    
+        View view = inflater.inflate(R.layout.task_list_layout, container, false);
+        mTasksListView = (ListView) view.findViewById(R.id.tasks_list);
         return view;
     }
 
@@ -48,13 +46,13 @@ public class TasksFragment extends Fragment implements LoaderCallbacks<Cursor> {
         super.onActivityCreated(savedInstanceState);
         mTasksAdapter = new TasksAdapter(getActivity(), null);
         mTasksListView.setAdapter(mTasksAdapter);
-        getLoaderManager().initLoader(0, null,  this);
+        getLoaderManager().initLoader(0, null, this);
     }
 
     @Override
-    public void onResume() {     
+    public void onResume() {
         super.onResume();
-      
+
     }
 
     @Override
