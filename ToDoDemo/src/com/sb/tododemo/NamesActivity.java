@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.sb.tododemo.adapters.NamesAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 

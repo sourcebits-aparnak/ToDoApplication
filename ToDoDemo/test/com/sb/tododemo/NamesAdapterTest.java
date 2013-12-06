@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sb.tododemo.NamesAdapter;
+import com.sb.tododemo.adapters.NamesAdapter;
 
 import org.junit.Before;
 import org.junit.Test;

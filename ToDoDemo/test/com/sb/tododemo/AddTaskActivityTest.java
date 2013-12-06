@@ -37,4 +37,12 @@ public class AddTaskActivityTest {
         assertNotNull("addTaskButton is null", addTaskButton);
     }
 
+    @Test
+    public void shouldSaveTaskDetailsToTheDatabase() {
+        taskCategory.setText("Meeting");
+        taskSummary.setText("Product Planning");
+        taskDescription.setText("Discussion about the product");
+        addTaskButton.performClick();
+    }
+
 }
