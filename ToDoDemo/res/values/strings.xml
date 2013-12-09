@@ -11,4 +11,9 @@
     <string name="hint_summary">Enter task summary</string>
     <string name="hint_description">Enter description</string>
 
+    <string-array name="list_options">
+        <item >Edit</item>
+        <item >Delete</item>
+    </string-array>
+    
 </resources>
