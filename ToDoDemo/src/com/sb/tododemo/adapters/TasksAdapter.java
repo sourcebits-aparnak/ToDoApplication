@@ -36,6 +36,8 @@ public class TasksAdapter extends CursorAdapter {
             final TextView task_description = (TextView) view.findViewById(R.id.task_description_textview);
             final TextView task_summary = (TextView) view.findViewById(R.id.task_summary_textview);
 
+            view.setId(cursor.getInt(cursor.getColumnIndex(TodoTable.COLUMN_ID)));
+            
             task_category.setText(cursor.getString(cursor.getColumnIndex(TodoTable.COLUMN_CATEGORY)));
             task_description.setText(cursor.getString(cursor.getColumnIndex(TodoTable.COLUMN_DESCRIPTION)));
             task_summary.setText(cursor.getString(cursor.getColumnIndex(TodoTable.COLUMN_SUMMARY)));
