@@ -1,68 +1,61 @@
 package com.sb.tododemo.fragments;
 
+
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
-import android.app.Fragment;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
+
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
-
-
+import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import com.sb.tododemo.AddTaskActivity;
 import com.sb.tododemo.R;
 import com.sb.tododemo.adapters.TasksAdapter;
 import com.sb.tododemo.databases.MyTodoContentProvider;
 import com.sb.tododemo.databases.TodoTable;
 
 /**
- * Fragment for tasks.
+ * Fragment for displaying the added tasks.
+ * 
  * @author Sourcebits LLC
- *
+ * 
  */
-public class TasksFragment extends Fragment implements LoaderCallbacks<Cursor>, OnItemLongClickListener {
 
-    private static final String TAG = "TasksFragment";  
+public class ViewTasksFragment extends Fragment implements LoaderCallbacks<Cursor>, OnItemLongClickListener{
 
-    private ListView mTasksListView;
+    private static final String TAG = ViewTasksFragment.class.getName();
+    private ListView            mTasksListView;
+    private TasksAdapter        mTasksAdapter;
 
-    private TasksAdapter mTasksAdapter;
 
-    private Dialog mDialog;
-
-    private int viewID;
-
-    public TasksFragment() {
+    public ViewTasksFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.taks_list_layout, container, false);
-        mTasksListView = (ListView) view.findViewById(R.id.tasks_list);  
+        View view = inflater.inflate(R.layout.task_list_layout, container, false);
+        mTasksListView = (ListView) view.findViewById(R.id.tasks_list);
         mTasksListView.setOnItemLongClickListener(this);
         return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-
         super.onActivityCreated(savedInstanceState);
         mTasksAdapter = new TasksAdapter(getActivity(), null);
         mTasksListView.setAdapter(mTasksAdapter);       
@@ -72,11 +65,10 @@ public class TasksFragment extends Fragment implements LoaderCallbacks<Cursor>, 
     @Override
     public void onResume() {     
         super.onResume();
-
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
+    public Loader<Cursor> onCreateLoader(int loaderId, Bundle values) {
         return new CursorLoader(getActivity(), MyTodoContentProvider.CONTENT_URI, null, null, null, null);
     }
 
@@ -97,15 +89,7 @@ public class TasksFragment extends Fragment implements LoaderCallbacks<Cursor>, 
         Dialog dialog = createDialog(String.valueOf(view.getId()));
         dialog.show();
         return true;
-    }
-
-    private void setID(int id) {
-        viewID = id;
-    }
-
-    private int getID() {
-        return viewID;
-    }
+    }   
 
     /**
      * Returns the dialog to show when list item is long clicked.
@@ -121,9 +105,7 @@ public class TasksFragment extends Fragment implements LoaderCallbacks<Cursor>, 
             public void onClick(DialogInterface dialog, int which) {
 
                 switch (which) {
-                case 0:
-                    Intent intent = new Intent(getActivity(), AddTaskActivity.class);
-                    startActivity(intent);                    
+                case 0:                               
                     break;
 
                 case 1:                                        
