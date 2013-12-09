@@ -23,12 +23,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sb.tododemo.AddTaskActivity"
-            android:label="@string/app_name" />
-        <activity
-            android:name="com.sb.tododemo.ShowTaskActivity"
-            android:label="@string/app_name" />
-        <activity
             android:name="com.sb.tododemo.NamesActivity"
             android:label="@string/app_name" />
 

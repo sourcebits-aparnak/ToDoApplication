@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.sb.tododemo.AddTaskActivity;
 import com.sb.tododemo.R;
 import com.sb.tododemo.databases.MyTodoContentProvider;
 import com.sb.tododemo.databases.TodoTable;
@@ -26,14 +25,13 @@ import com.sb.tododemo.databases.TodoTable;
 public class AddTaskFragment extends Fragment implements OnClickListener {
 
     /** Tag used for debugging purposes. */
-    private static final String TAG = AddTaskActivity.class.getName();
+    private static final String TAG = AddTaskFragment.class.getName();
 
     private EditText            mTaskCategory;
     private EditText            mTaskSummary;
     private EditText            mTaskDescription;
 
     private Button              mAddTask;
-    private Button              mShowTasks;
 
     public AddTaskFragment() {
 
@@ -66,9 +64,6 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
         mTaskDescription = (EditText) view.findViewById(R.id.task_description_edittext);
         mAddTask = (Button) view.findViewById(R.id.button_add);
         mAddTask.setOnClickListener(this);
-
-        mShowTasks = (Button) view.findViewById(R.id.button_show_tasks);
-        mShowTasks.setOnClickListener(this);
     }
 
     /**
