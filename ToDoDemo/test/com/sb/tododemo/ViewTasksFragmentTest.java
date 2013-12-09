@@ -1,32 +1,39 @@
 package com.sb.tododemo;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ListView;
 
-import com.sb.tododemo.fragments.AddTaskFragment;
+import com.sb.tododemo.fragments.ViewTasksFragment;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.shadows.ShadowToast;
 
+/**
+ * Testcases for the View Tasks fragment.
+ * 
+ * @author aparna
+ * 
+ */
 @RunWith(RobolectricTestRunner.class)
-public class HomeActivityTest {
-    private Fragment addTaskFragment;
+public class ViewTasksFragmentTest {
+
+    private Fragment viewTasksFragment;
+    private ListView tasksList;
 
     @Before
     public void setUp() {
-        addTaskFragment = new AddTaskFragment();
-        startFragment(addTaskFragment);
+        viewTasksFragment = new ViewTasksFragment();
+        startFragment(viewTasksFragment);
+
+        tasksList = (ListView) viewTasksFragment.getView().findViewById(R.id.tasks_list);
     }
 
     private void startFragment(Fragment fragment) {
@@ -38,8 +45,7 @@ public class HomeActivityTest {
     }
 
     @Test
-    public void addTaskFragmentShouldNotBeNull() throws Exception {
-        assertNotNull("Fragment is NULL", addTaskFragment);
+    public void fragmentShouldHaveViews() {
+        assertNotNull("List is NULL", tasksList);
     }
-
 }
