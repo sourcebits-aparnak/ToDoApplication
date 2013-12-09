@@ -10,10 +10,10 @@
         android:layout_height="fill_parent"
         android:layout_below="@android:id/tabhost" />
 
-    <TabHost
+    <com.sb.tododemo.widgets.SavedStateFragmentTabHost
         android:id="@android:id/tabhost"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" />
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/holo_orange_light" />
 
 </RelativeLayout>
