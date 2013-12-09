@@ -2,7 +2,6 @@ package com.sb.tododemo;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
 import android.widget.TabHost.OnTabChangeListener;
 
 import com.sb.tododemo.fragments.AddTaskFragment;
