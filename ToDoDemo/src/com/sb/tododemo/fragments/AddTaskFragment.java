@@ -1,11 +1,17 @@
 package com.sb.tododemo.fragments;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +23,9 @@ import android.widget.Toast;
 import com.sb.tododemo.R;
 import com.sb.tododemo.databases.MyTodoContentProvider;
 import com.sb.tododemo.databases.TodoTable;
+import com.sb.tododemo.receivers.TaskReminder;
+
+import java.util.GregorianCalendar;
 
 /**
  * Fragment for adding tasks.
@@ -89,7 +98,10 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     isCategoryValid = true;
+                }else{
+                    isCategoryValid = false;
                 }
+                
                 if (isCategoryValid && isDescriptonValid && isSummaryValid) {
                     mAddTaskButton.setEnabled(true);
                 } else {
@@ -115,6 +127,8 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     isDescriptonValid = true;
+                }else{
+                    isDescriptonValid = false;
                 }
                 if (isCategoryValid && isDescriptonValid && isSummaryValid) {
                     mAddTaskButton.setEnabled(true);
@@ -143,7 +157,10 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     isSummaryValid = true;
+                }else{
+                    isSummaryValid = false;
                 }
+                
                 if (isCategoryValid && isDescriptonValid && isSummaryValid) {
                     mAddTaskButton.setEnabled(true);
                 } else {
@@ -159,15 +176,39 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
      */
     private void saveTaskInDB() {
         ContentValues values = new ContentValues();
-        values.put(TodoTable.COLUMN_CATEGORY, mTaskCategory.getText().toString());
-        values.put(TodoTable.COLUMN_SUMMARY, mTaskSummary.getText().toString());
-        values.put(TodoTable.COLUMN_DESCRIPTION, mTaskDescription.getText().toString());
+        final String category = mTaskCategory.getText().toString();
+        final String summary = mTaskSummary.getText().toString();
+        final String description = mTaskDescription.getText().toString();
+        values.put(TodoTable.COLUMN_CATEGORY, category);
+        values.put(TodoTable.COLUMN_SUMMARY, summary);
+        values.put(TodoTable.COLUMN_DESCRIPTION, description);
         Uri insertedUri = getActivity().getContentResolver().insert(MyTodoContentProvider.CONTENT_URI, values);
         if (insertedUri != null) {
             Toast.makeText(getActivity(), R.string.task_inserted, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getActivity(), R.string.error_problem_while_inserting, Toast.LENGTH_SHORT).show();
         }
+
+        Cursor cursor = getActivity().getContentResolver().query(MyTodoContentProvider.CONTENT_URI, 
+                new String[] { TodoTable.COLUMN_ID }, TodoTable.COLUMN_CATEGORY + "=? AND " + TodoTable.COLUMN_SUMMARY + "=? AND " + 
+                        TodoTable.COLUMN_DESCRIPTION + "=?", new String[] { category, summary, description}, null);
+
+        String colID = "0";
+        if(cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            colID = cursor.getString(cursor.getColumnIndex(TodoTable.COLUMN_ID));
+            Log.i(TAG, "col id : " + colID);
+        }
+        cursor.close();
+        
+        Long time = new GregorianCalendar().getTimeInMillis() + (20 * 1000);
+        Intent intent = new Intent(getActivity(), TaskReminder.class);
+        intent.putExtra("ID", colID);
+        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        // set the alarm
+        alarmManager.set(AlarmManager.RTC_WAKEUP, time, PendingIntent.getBroadcast(getActivity(), 1, intent, 
+                PendingIntent.FLAG_UPDATE_CURRENT));
+        Toast.makeText(getActivity(), "Alarm scheduled in 20 seconds", Toast.LENGTH_SHORT).show();
 
     }
 }

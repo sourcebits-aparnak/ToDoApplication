@@ -29,7 +29,6 @@ public class ViewTasksFragmentTest {
     public void setUp() {
         viewTasksFragment = new ViewTasksFragment();
         startFragment(viewTasksFragment);
-
         tasksList = (ListView) viewTasksFragment.getView().findViewById(R.id.tasks_list);
     }
 
