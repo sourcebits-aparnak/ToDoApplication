@@ -59,4 +59,23 @@ public class TasksAdapterTest {
         Assert.assertTrue(cursor.isClosed());
     }
 
+    @Test
+    public void testCursorPosition() throws Exception {
+        Cursor cursor = cursorAdapter.getCursor();
+        cursor.moveToFirst();
+        Assert.assertTrue(cursor.isFirst());
+        cursor.moveToLast();
+        Assert.assertTrue(cursor.isLast());
+        cursor.moveToPosition(2);
+        Assert.assertEquals(2, cursor.getPosition());       
+    }
+
+    @Test
+    public void testCursorData() throws Exception {
+        Cursor cursor = cursorAdapter.getCursor();
+        cursor.moveToFirst();
+        Assert.assertEquals("Data does not match", "category", 
+                cursor.getString(cursor.getColumnIndex(TodoTable.COLUMN_CATEGORY)));
+    }
+
 }
