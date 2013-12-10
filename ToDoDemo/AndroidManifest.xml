@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+   
 
     <application
         android:allowBackup="true"
@@ -31,6 +33,9 @@
             android:authorities="com.sb.tododemo.databases"
             android:exported="false" >
         </provider>
+        
+        <receiver android:name="com.sb.tododemo.receivers.TaskReminder"></receiver>
+        
     </application>
 
 </manifest>
