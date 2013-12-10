@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,13 +27,16 @@ import com.sb.tododemo.databases.TodoTable;
 public class AddTaskFragment extends Fragment implements OnClickListener {
 
     /** Tag used for debugging purposes. */
-    private static final String TAG = AddTaskFragment.class.getName();
+    private static final String TAG               = AddTaskFragment.class.getName();
 
     private EditText            mTaskCategory;
     private EditText            mTaskSummary;
     private EditText            mTaskDescription;
 
-    private Button              mAddTask;
+    private Button              mAddTaskButton;
+    private boolean             isSummaryValid    = false;
+    private boolean             isDescriptonValid = false;
+    private boolean             isCategoryValid   = false;
 
     public AddTaskFragment() {
 
@@ -47,7 +52,8 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button_add) {
-            if (mTaskCategory.getText() != null && mTaskDescription.getText() != null && mTaskSummary.getText() != null) {
+            if (!mTaskCategory.getText().toString().isEmpty() && !mTaskSummary.getText().toString().isEmpty()
+                    && !mTaskDescription.getText().toString().isEmpty()) {
                 saveTaskInDB();
             } else {
                 Toast.makeText(getActivity(), R.string.error_enter_all_rows, Toast.LENGTH_SHORT).show();
@@ -62,8 +68,90 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
         mTaskCategory = (EditText) view.findViewById(R.id.task_category_edittext);
         mTaskSummary = (EditText) view.findViewById(R.id.task_summary_edittext);
         mTaskDescription = (EditText) view.findViewById(R.id.task_description_edittext);
-        mAddTask = (Button) view.findViewById(R.id.button_add);
-        mAddTask.setOnClickListener(this);
+        mAddTaskButton = (Button) view.findViewById(R.id.button_add);
+        mAddTaskButton.setOnClickListener(this);
+
+        mTaskCategory.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().isEmpty()) {
+                    isCategoryValid = true;
+                }
+                if (isCategoryValid && isDescriptonValid && isSummaryValid) {
+                    mAddTaskButton.setEnabled(true);
+                } else {
+                    mAddTaskButton.setEnabled(false);
+                }
+            }
+        });
+
+        mTaskDescription.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().isEmpty()) {
+                    isDescriptonValid = true;
+                }
+                if (isCategoryValid && isDescriptonValid && isSummaryValid) {
+                    mAddTaskButton.setEnabled(true);
+                } else {
+                    mAddTaskButton.setEnabled(false);
+                }
+
+            }
+        });
+
+        mTaskSummary.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().isEmpty()) {
+                    isSummaryValid = true;
+                }
+                if (isCategoryValid && isDescriptonValid && isSummaryValid) {
+                    mAddTaskButton.setEnabled(true);
+                } else {
+                    mAddTaskButton.setEnabled(false);
+                }
+            }
+        });
+
     }
 
     /**
@@ -82,5 +170,4 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
         }
 
     }
-
 }
