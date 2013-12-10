@@ -7,15 +7,15 @@ import android.support.v4.widget.CursorAdapter;
 
 import com.sb.tododemo.adapters.TasksAdapter;
 import com.sb.tododemo.databases.TodoTable;
+import com.sb.tododemo.support.CustomRobolectricTestRunner;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(CustomRobolectricTestRunner.class)
 public class TasksAdapterTest {
 
     private Activity      activity;

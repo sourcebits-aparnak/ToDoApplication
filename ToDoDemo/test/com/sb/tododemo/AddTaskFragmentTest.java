@@ -2,22 +2,18 @@ package com.sb.tododemo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static com.sb.tododemo.support.CustomRobolectricTestRunner.startFragment;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.sb.tododemo.R;
 import com.sb.tododemo.fragments.AddTaskFragment;
+import com.sb.tododemo.support.CustomRobolectricTestRunner;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowToast;
 
 /**
@@ -26,7 +22,7 @@ import org.robolectric.shadows.ShadowToast;
  * @author aparna
  * 
  */
-@RunWith(RobolectricTestRunner.class)
+@RunWith(CustomRobolectricTestRunner.class)
 public class AddTaskFragmentTest {
 
     private Fragment addTaskFragment;
@@ -44,14 +40,6 @@ public class AddTaskFragmentTest {
         taskSummary = (EditText) addTaskFragment.getView().findViewById(R.id.task_summary_edittext);
         taskDescription = (EditText) addTaskFragment.getView().findViewById(R.id.task_description_edittext);
         addTaskButton = (Button) addTaskFragment.getView().findViewById(R.id.button_add);
-    }
-
-    private void startFragment(Fragment fragment) {
-        FragmentActivity activity = Robolectric.buildActivity(FragmentActivity.class).create().start().resume().get();
-        FragmentManager fragmentManager = activity.getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(fragment, null);
-        fragmentTransaction.commit();
     }
 
     @Test

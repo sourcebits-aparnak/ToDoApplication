@@ -3,24 +3,23 @@ package com.sb.tododemo;
 import static org.junit.Assert.assertTrue;
 import static org.robolectric.Robolectric.shadowOf;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
-import org.robolectric.shadows.ShadowContentProvider;
-import org.robolectric.shadows.ShadowContentResolver;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 
 import com.sb.tododemo.databases.MyTodoContentProvider;
 import com.sb.tododemo.databases.TodoTable;
+import com.sb.tododemo.support.CustomRobolectricTestRunner;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowContentProvider;
+import org.robolectric.shadows.ShadowContentResolver;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(CustomRobolectricTestRunner.class)
 @Config(shadows = { CustomSQLiteShadow.class })
 public class MyTodoContentProviderTest {
 

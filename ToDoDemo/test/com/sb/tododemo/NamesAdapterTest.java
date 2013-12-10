@@ -1,24 +1,24 @@
 package com.sb.tododemo;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.sameInstance;
+import static org.junit.Assert.assertThat;
+
 import android.app.Activity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sb.tododemo.adapters.NamesAdapter;
+import com.sb.tododemo.support.CustomRobolectricTestRunner;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
 
 import java.util.ArrayList;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.sameInstance;
-import static org.junit.Assert.assertThat;
-
-@RunWith(RobolectricTestRunner.class)
+@RunWith(CustomRobolectricTestRunner.class)
 public class NamesAdapterTest {
 
     private ArrayList<String> names;
