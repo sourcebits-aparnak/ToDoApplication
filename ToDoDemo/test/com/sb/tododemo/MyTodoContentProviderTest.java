@@ -11,6 +11,7 @@ import com.sb.tododemo.databases.MyTodoContentProvider;
 import com.sb.tododemo.databases.TodoTable;
 import com.sb.tododemo.support.CustomRobolectricTestRunner;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -96,6 +97,22 @@ public class MyTodoContentProviderTest {
         int updatedRows = mShadowContentResolver.update(MyTodoContentProvider.CONTENT_URI, values, TodoTable.COLUMN_CATEGORY + " LIKE ?",
                 new String[] { "category_1" });
         assertTrue("No such row entry exists", updatedRows > 0);
+
+    }
+
+    @Test
+    public void testDeleteRow() throws Exception {
+        // Insert a item.
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TodoTable.COLUMN_CATEGORY, "category_1");
+        contentValues.put(TodoTable.COLUMN_DESCRIPTION, "description");
+        contentValues.put(TodoTable.COLUMN_SUMMARY, "summary");
+        mContentResolver.insert(MyTodoContentProvider.CONTENT_URI, contentValues);
+
+        // Delete the item
+        int rowsDeleted = mShadowContentResolver.delete(MyTodoContentProvider.CONTENT_URI, TodoTable.COLUMN_CATEGORY + "=?", 
+                new String[] { "category_1" });
+        Assert.assertEquals(1, rowsDeleted);
 
     }
 

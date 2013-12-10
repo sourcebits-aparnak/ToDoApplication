@@ -1,5 +1,6 @@
 package com.sb.tododemo;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static com.sb.tododemo.support.CustomRobolectricTestRunner.startFragment;
@@ -56,7 +57,7 @@ public class AddTaskFragmentTest {
         taskSummary.setText("Product Planning");
         taskDescription.setText("Discussion about the product");
         addTaskButton.performClick();
-        assertEquals("Expected toast message is not displayed", "Row inserted!", ShadowToast.getTextOfLatestToast());
+        assertEquals("Expected toast message is not displayed", "Task added", ShadowToast.getTextOfLatestToast());
     }
 
 }
