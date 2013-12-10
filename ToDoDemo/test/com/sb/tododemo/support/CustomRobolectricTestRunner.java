@@ -66,8 +66,13 @@ public class CustomRobolectricTestRunner extends RobolectricTestRunner {
      * 
      * @param view
      */
-    public static void assertThatViewIsVisible(View view) {
+    public static void assertViewIsVisible(View view) {
         assertNotNull(view);
         assertThat(view.getVisibility(), equalTo(View.VISIBLE));
+    }
+
+    public static void assertViewIsHidden(View view) {
+        assertNotNull(view);
+        assertThat(view.getVisibility(), equalTo(View.GONE));
     }
 }

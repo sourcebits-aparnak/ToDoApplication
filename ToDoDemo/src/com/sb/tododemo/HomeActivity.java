@@ -21,7 +21,7 @@ public class HomeActivity extends FragmentActivity implements OnTabChangeListene
     private SavedStateFragmentTabHost mTabHost;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home_activity);
         mTabHost = (SavedStateFragmentTabHost) findViewById(android.R.id.tabhost);
@@ -35,12 +35,12 @@ public class HomeActivity extends FragmentActivity implements OnTabChangeListene
      * Set up the tabs to be toggled between.
      */
     private void setUpTabs() {
-        mTabHost.addTab(mTabHost.newTabSpec("addTask").setIndicator("Add Task"), AddTaskFragment.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("viewTask").setIndicator("View Tasks"), ViewTasksFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("addTask").setIndicator(getString(R.string.title_add_task)), AddTaskFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("viewTask").setIndicator(getString(R.string.title_view_tasks)), ViewTasksFragment.class, null);
     }
 
     @Override
-    public void onTabChanged(String tabId) {
+    public void onTabChanged(final String tabId) {
 
     }
 

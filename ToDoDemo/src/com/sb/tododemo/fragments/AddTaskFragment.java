@@ -50,7 +50,7 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
             if (mTaskCategory.getText() != null && mTaskDescription.getText() != null && mTaskSummary.getText() != null) {
                 saveTaskInDB();
             } else {
-                Toast.makeText(getActivity(), "Enter all fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.error_enter_all_rows, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -76,9 +76,9 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
         values.put(TodoTable.COLUMN_DESCRIPTION, mTaskDescription.getText().toString());
         Uri insertedUri = getActivity().getContentResolver().insert(MyTodoContentProvider.CONTENT_URI, values);
         if (insertedUri != null) {
-            Toast.makeText(getActivity(), "Row inserted!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.task_inserted, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getActivity(), "Problem while inserting...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.error_problem_while_inserting, Toast.LENGTH_SHORT).show();
         }
 
     }

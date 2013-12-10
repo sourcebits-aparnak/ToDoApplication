@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- All textview/button labels/messages should be listed here. -->
     <string name="app_name">ToDoDemo</string>
     <string name="action_settings">Settings</string>
     <string name="text_add">Save Task</string>
     <string name="text_show_tasks">Show tasks</string>
+    <string name="task_inserted">Task added</string>
+    <string name="task_updated">Task updated</string>
+    <string name="task_deleted">Task deleted</string>
 
     <!-- The hint texts are to be listed down here. -->
     <string name="hint_category">Enter task category</string>
@@ -12,8 +16,20 @@
     <string name="hint_description">Enter description</string>
 
     <string-array name="list_options">
-        <item >Edit</item>
-        <item >Delete</item>
+        <item>Edit</item>
+        <item>Delete</item>
     </string-array>
-    
+
+    <!-- All error messages are to be listed here. -->
+    <string name="error_enter_all_rows">Enter all fields</string>
+    <string name="error_problem_while_inserting">Problem while inserting</string>
+    <string name="error_problem_while_updating">Problem while updating task</string>
+    <string name="error_problem_while_deleting">Problem while deleting task</string>
+
+    <!-- Fragment/Dialog titles -->
+    <string name="title_add_task">Add Task</string>
+    <string name="title_view_tasks">View Tasks</string>
+    <string name="title_select_task">Select Task</string>
+    <string name="title_edit_task">Edit Task</string>
+
 </resources>

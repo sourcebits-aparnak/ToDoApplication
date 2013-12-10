@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class TodoDatabaseHelper extends SQLiteOpenHelper{
+public class TodoDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "todotable.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME    = "todotable.db";
+    private static final int    DATABASE_VERSION = 1;
 
     public TodoDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -22,10 +22,8 @@ public class TodoDatabaseHelper extends SQLiteOpenHelper{
     // Method is called during an upgrade of the database,
     // e.g. if you increase the database version
     @Override
-    public void onUpgrade(SQLiteDatabase database, int oldVersion,
-            int newVersion) {
+    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         TodoTable.onUpgrade(database, oldVersion, newVersion);
     }
-
 
 }
