@@ -25,8 +25,7 @@ public class TaskReminder extends BroadcastReceiver{
             final String summary = cursor.getString(cursor.getColumnIndex(TodoTable.COLUMN_SUMMARY));
             Toast.makeText(context, category + "\n" + description + "\n" + summary , Toast.LENGTH_LONG).show();
         }
-        
-        //Toast.makeText(context, "Alarm triggered!!!", Toast.LENGTH_LONG).show();
+        cursor.close();       
         
     }
 
