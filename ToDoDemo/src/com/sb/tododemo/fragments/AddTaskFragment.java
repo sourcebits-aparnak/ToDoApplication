@@ -98,10 +98,10 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     isCategoryValid = true;
-                }else{
+                } else {
                     isCategoryValid = false;
                 }
-                
+
                 if (isCategoryValid && isDescriptonValid && isSummaryValid) {
                     mAddTaskButton.setEnabled(true);
                 } else {
@@ -127,7 +127,7 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     isDescriptonValid = true;
-                }else{
+                } else {
                     isDescriptonValid = false;
                 }
                 if (isCategoryValid && isDescriptonValid && isSummaryValid) {
@@ -157,10 +157,10 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     isSummaryValid = true;
-                }else{
+                } else {
                     isSummaryValid = false;
                 }
-                
+
                 if (isCategoryValid && isDescriptonValid && isSummaryValid) {
                     mAddTaskButton.setEnabled(true);
                 } else {
@@ -189,26 +189,27 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
             Toast.makeText(getActivity(), R.string.error_problem_while_inserting, Toast.LENGTH_SHORT).show();
         }
 
-        Cursor cursor = getActivity().getContentResolver().query(MyTodoContentProvider.CONTENT_URI, 
-                new String[] { TodoTable.COLUMN_ID }, TodoTable.COLUMN_CATEGORY + "=? AND " + TodoTable.COLUMN_SUMMARY + "=? AND " + 
-                        TodoTable.COLUMN_DESCRIPTION + "=?", new String[] { category, summary, description}, null);
+        Cursor cursor = getActivity().getContentResolver().query(MyTodoContentProvider.CONTENT_URI, new String[] { TodoTable.COLUMN_ID },
+                TodoTable.COLUMN_CATEGORY + "=? AND " + TodoTable.COLUMN_SUMMARY + "=? AND " + TodoTable.COLUMN_DESCRIPTION + "=?",
+                new String[] { category, summary, description }, null);
 
-        String colID = "0";
-        if(cursor != null && cursor.getCount() > 0) {
+        int colID = 0;
+        if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
-            colID = cursor.getString(cursor.getColumnIndex(TodoTable.COLUMN_ID));
+            colID = cursor.getInt(cursor.getColumnIndex(TodoTable.COLUMN_ID));
             Log.i(TAG, "col id : " + colID);
         }
         cursor.close();
-        
+        scheduleAlarm(20, colID);
+    }
+
+    private void scheduleAlarm(int minutes, int taskId) {
         Long time = new GregorianCalendar().getTimeInMillis() + (20 * 1000);
         Intent intent = new Intent(getActivity(), TaskReminder.class);
-        intent.putExtra("ID", colID);
+        intent.putExtra("ID", taskId);
         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
         // set the alarm
-        alarmManager.set(AlarmManager.RTC_WAKEUP, time, PendingIntent.getBroadcast(getActivity(), 1, intent, 
-                PendingIntent.FLAG_UPDATE_CURRENT));
+        alarmManager.set(AlarmManager.RTC_WAKEUP, time, PendingIntent.getBroadcast(getActivity(), 1, intent, PendingIntent.FLAG_UPDATE_CURRENT));
         Toast.makeText(getActivity(), "Alarm scheduled in 20 seconds", Toast.LENGTH_SHORT).show();
-
     }
 }

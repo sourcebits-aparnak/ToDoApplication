@@ -14,8 +14,9 @@ public class TaskReminder extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        String id = intent.getExtras().getString("ID");
-        Cursor cursor = context.getContentResolver().query(MyTodoContentProvider.CONTENT_URI, null, TodoTable.COLUMN_ID + "=?", new String[] { id },
+        String taskId = String.valueOf(intent.getExtras().getInt("ID"));
+        Cursor cursor = context.getContentResolver().query(MyTodoContentProvider.CONTENT_URI, null, TodoTable.COLUMN_ID + "=?",
+                new String[] { taskId },
                 null);
 
         if (cursor != null && cursor.getCount() > 0) {
