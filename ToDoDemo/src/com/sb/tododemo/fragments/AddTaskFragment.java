@@ -198,9 +198,10 @@ public class AddTaskFragment extends Fragment implements OnClickListener {
             cursor.moveToFirst();
             colID = cursor.getInt(cursor.getColumnIndex(TodoTable.COLUMN_ID));
             Log.i(TAG, "col id : " + colID);
-        }
-        cursor.close();
-        scheduleAlarm(20, colID);
+            cursor.close();
+            scheduleAlarm(20, colID);
+        } 
+        
     }
 
     private void scheduleAlarm(int minutes, int taskId) {

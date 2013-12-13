@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.sb.tododemo.fragments.AddTaskFragment;
 import com.sb.tododemo.support.CustomRobolectricTestRunner;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,4 +61,14 @@ public class AddTaskFragmentTest {
         assertEquals("Expected toast message is not displayed", "Task added", ShadowToast.getTextOfLatestToast());
     }
 
+    @Test
+    public void testAddTaskButtonEnabled() throws Exception {
+        taskCategory.setText("Meeting");
+        Assert.assertFalse(addTaskButton.isEnabled());
+        taskSummary.setText("Product Planning");
+        Assert.assertFalse(addTaskButton.isEnabled());
+        taskDescription.setText("Discussion about the product");
+        Assert.assertTrue(addTaskButton.isEnabled());
+    }
+    
 }

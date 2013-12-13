@@ -156,6 +156,7 @@ public class ViewTasksFragment extends Fragment implements LoaderCallbacks<Curso
         cursor.close();
 
         Button mAddTask = (Button) editDialog.findViewById(R.id.button_add);
+        mAddTask.setEnabled(true);
         mAddTask.setOnClickListener(new View.OnClickListener() {
 
             @Override
