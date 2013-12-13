@@ -12,27 +12,32 @@
         android:id="@+id/task_category_edittext"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_category" />
+        android:hint="@string/hint_category"
+        android:inputType="textCapWords" />
 
     <EditText
         android:id="@+id/task_summary_edittext"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/task_category_edittext"
-        android:hint="@string/hint_summary" />
+        android:hint="@string/hint_summary"
+        android:inputType="textCapSentences" />
 
     <EditText
         android:id="@+id/task_description_edittext"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/task_summary_edittext"
-        android:hint="@string/hint_description" />
+        android:hint="@string/hint_description"
+        android:inputType="textCapSentences" />
 
     <Button
         android:id="@+id/button_add"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_below="@id/task_description_edittext"
+        android:layout_marginTop="18dp"
         android:enabled="false"
         android:text="@string/text_add" />
 
